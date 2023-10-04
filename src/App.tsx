@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { extractVideoId, getCaption, handleCopy } from './utils';
+import Spinner from './components/spinner';
 
 function App() {
   const [videoUrl, setVideoUrl] = useState(
@@ -70,7 +71,12 @@ function App() {
           </button>
         </form>
         {isLoading ? (
-          <p className='text-center'>Extracting captions...</p>
+          <p className='text-center flex justify-center items-center'>
+            <span className='mr-2'>
+              <Spinner />
+            </span>
+            <span>Extracting captions...</span>
+          </p>
         ) : error && isLoading !== null ? (
           <p className='text-red-500'>{error}</p>
         ) : (
