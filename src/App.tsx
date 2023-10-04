@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { extractVideoId, getCaption, handleCopy } from './utils';
-import Spinner from './components/spinner';
+import Spinner from './components/Spinner';
 
 function App() {
   const [videoUrl, setVideoUrl] = useState(
