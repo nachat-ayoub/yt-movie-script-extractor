@@ -8,24 +8,41 @@ function extractVideoId(url: string): string | null {
   return videoIdMatch ? videoIdMatch[1] : null;
 }
 
-const handleCopy = (text: string) => {
+const handleCopy = (text: string, prompt = false) => {
   copy(
-    `can you format this text in a readable way in paragraphs:
+    prompt
+      ? `can you format this text in a readable way in paragraphs:
 
-` + text
+`
+      : '' + text
   );
-  alert('Captions copied to clipboard');
+  // alert('Captions copied to clipboard');
 };
 
-async function getCaption(videoID: string): Promise<captionData[] | null> {
+async function getCaption(
+  videoID: string
+): Promise<captionData[] | string | null> {
   try {
     const API = 'https://yt-caption-api.onrender.com/api?videoID=' + videoID;
-    const resp = await axios.get(API);
-    if (resp.status == 200) {
-      return resp.data.data;
-    }
 
-    return null;
+    // Create a promise that resolves after 7 seconds
+    const timeoutPromise = new Promise<string>((resolve) => {
+      setTimeout(() => {
+        resolve('Request timed out');
+      }, 7000); // 7 seconds
+    });
+
+    // Use Promise.race to race between the request and the timeout
+    const result = await Promise.race([
+      axios.get(API).then((resp) => resp.data.data), // The actual request
+      timeoutPromise, // The timeout promise
+    ]);
+
+    if (typeof result === 'string' && result === 'Request timed out') {
+      return 'The request timed out after 7 seconds';
+    } else {
+      return result; // Return the response data or null if an error occurred
+    }
   } catch (error) {
     console.log(error);
     return null;
