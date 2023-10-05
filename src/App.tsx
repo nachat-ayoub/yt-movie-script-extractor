@@ -59,18 +59,17 @@ function App() {
   };
 
   return (
-    <div className='min-h-screen p-6 md:p-12 flex items-center justify-center bg-gray-100'>
-      <ToastContainer />
-
-      <div className='w-full p-6 bg-white rounded-lg shadow'>
-        <div className='w-full flex flex-col md:flex-row justify-between items-center'>
+    <div className='min-h-screen p-3 md:p-12 flex items-center justify-center bg-gray-100'>
+      <div className='w-full p-3 md:p-6 bg-white rounded-lg shadow'>
+        <ToastContainer />
+        <div className='mt-10 w-full flex flex-col md:flex-row justify-between items-center'>
           <div className='flex gap-2 items-center'>
             <img
-              className='w-20'
+              className='invisible xs:visible w-16 md:w-20'
               src='/logo.svg'
               alt='YouTube Caption Extractor'
             />
-            <h1 className='text-2xl font-semibold'>
+            <h1 className='text-lg md:text-2xl font-semibold'>
               YouTube Caption Extractor
             </h1>
           </div>
@@ -122,23 +121,23 @@ function App() {
                   className='min-h-[calc(100vh-(422px+4rem))] md:min-h-[calc(100vh-(300px+7rem))] border-gray-300 border rounded w-full p-3 mb-2 whitespace-pre-line'
                   defaultValue={captions}
                 ></textarea>
-                <div className='w-full flex flex-col md:flex-row md:justify-between gap-y-3 gap-x-8'>
+                <div className='w-full text-sm md:text-base flex flex-col md:flex-row md:justify-between gap-y-3 gap-x-8'>
                   <button
-                    className='w-full flex justify-center items-center text-white bg-amber-400 hover:bg-amber-500 focus:ring-4 focus:ring-amber-300 font-medium text-base px-5 py-2.5 focus:outline-none rounded-md'
+                    className='w-full flex justify-center items-center text-white bg-amber-400 hover:bg-amber-500 focus:ring-4 focus:ring-amber-300 font-medium px-5 py-2.5 focus:outline-none rounded-md'
                     type='button'
                     onClick={() => {
                       handleCopy(captions);
                       notify('Caption Copied Successfully', true);
                     }}
                   >
-                    <span className='mr-3 text-2xl'>
+                    <span className='mr-3 text-xl md:text-2xl'>
                       <i className='fa-regular fa-closed-captioning'></i>
                     </span>
 
                     <span>Copy Caption</span>
                   </button>
                   <button
-                    className='w-full flex justify-center items-center text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium text-base px-5 py-2.5 focus:outline-none rounded-md'
+                    className='w-full flex justify-center items-center text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium px-5 py-2.5 focus:outline-none rounded-md'
                     type='button'
                     onClick={() => {
                       handleCopy(captions, true);
@@ -147,7 +146,7 @@ function App() {
                   >
                     <span className='mr-3'>
                       <svg
-                        className='w-8'
+                        className='w-7 md:w-8'
                         xmlns='http://www.w3.org/2000/svg'
                         x='0px'
                         y='0px'
