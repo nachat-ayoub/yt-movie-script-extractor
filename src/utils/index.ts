@@ -10,11 +10,11 @@ function extractVideoId(url: string): string | null {
 
 const handleCopy = (text: string, prompt = false) => {
   copy(
-    prompt
+    (prompt
       ? `can you format this text in a readable way in paragraphs:
 
 `
-      : '' + text
+      : '') + text
   );
   // alert('Captions copied to clipboard');
 };

@@ -19,6 +19,7 @@ function App() {
   };
 
   const fetchEnglishCaptions = async () => {
+    let message = '';
     try {
       setIsLoading(true);
       setError('');
@@ -47,14 +48,15 @@ function App() {
       } else {
         throw 'Captions not found for this video.';
       }
-    } catch (error) {
-      console.error('Error fetching captions:', error);
-      setError(error as string);
+    } catch (_error) {
+      console.error('Error fetching captions:', _error);
+      setError(_error as string);
+      message = _error as string;
     } finally {
       setIsLoading(false);
-      const message = error || 'Caption extracted successfully!';
-      const success = error ? false : true;
-      notify(message, success);
+
+      message = message === '' ? 'Caption extracted successfully!' : message;
+      notify(message, message === 'Caption extracted successfully!');
     }
   };
 
